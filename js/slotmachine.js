@@ -42,73 +42,70 @@ const arrTest = [
   "araimono.KaiWai#1234",
   "ukishima#1234",
   "Mameta#1234",
-  "自律分散型メイド#1234"
-  
-  /*
-  Taka｜DAOWorker
-  KenKen
-  JunIto
-  CAMU
-  dogo
-  Hiroships
-  masameta
-  ちえみ
-  Win-Win
-  sazanami
-  Uwaizumi.eth
-  渡辺隆行 nabe
-  MetaFuku
-  ryuzaum
-  Polonity
-  oinarisan
-  わたなべとおる
-  whiz
-  Arts
-  Tatsuya
-  hana
-  Monep | 1Block
-  Hirox
-  Takuya Kitagawa
-  yuka
-  kki
-  カミンスキー
-  FLOPS
-  m.oura
-  Million(MEGA=10^6)
-  みみみみこ
-  ruyau
-  tacrew
-  Saygo
-  mashharuki
-  まゆ
-  zkYuki
-  Kuni
-  ht
-  Masa
-  Iovebaby
-  hideplus
-  suzaq79324
-  tokio
-  Kinuma
-  Sota Morimaya
-  humzoh
-  masp047
-  しんさん
-  nyaru
-  EdwinGan
-  yusuke
-  Smichan
-  yossy
-  azu-chan
-  MetaTanuki
-  いかちゃんねる
-  Kkk
-  Kenji
-  sasami
-  hassaku8
-  davinci9
-  Hayato
-  */
+  "自律分散型メイド#1234",
+  "Taka｜DAOWorker",
+  "KenKen",
+  "JunIto",
+  "CAMU",
+  "dogo",
+  "Hiroships",
+  "masameta",
+  "ちえみ",
+  "Win-Win",
+  "sazanami",
+  "Uwaizumi.eth",
+  "渡辺隆行 nabe",
+  "MetaFuku",
+  "ryuzaum",
+  "Polonity",
+  "oinarisan",
+  "わたなべとおる",
+  "whiz",
+  "Arts",
+  "Tatsuya",
+  "hana",
+  "Monep | 1Block",
+  "Hirox",
+  "Takuya Kitagawa",
+  "yuka",
+  "kki",
+  "カミンスキー",
+  "FLOPS",
+  "m.oura",
+  "Million(MEGA=10^6)",
+  "みみみみこ",
+  "ruyau",
+  "tacrew",
+  "Saygo",
+  "mashharuki",
+  "まゆ",
+  "zkYuki",
+  "Kuni",
+  "ht",
+  "Masa",
+  "Iovebaby",
+  "hideplus",
+  "suzaq79324",
+  "tokio",
+  "Kinuma",
+  "Sota Morimaya",
+  "humzoh",
+  "masp047",
+  "しんさん",
+  "nyaru",
+  "EdwinGan",
+  "yusuke",
+  "Smichan",
+  "yossy",
+  "azu-chan",
+  "MetaTanuki",
+  "いかちゃんねる",
+  "Kkk",
+  "Kenji",
+  "sasami",
+  "hassaku8",
+  "davinci9",
+  "Hayato"
 ];
 
 // 当選者
