@@ -117,8 +117,8 @@ const arrTest = [
 //maxLength = 30;
 
 var music = new Audio('https://howlingindicator.net/wp-content/uploads/2022/02/SE114_3.mp3');
-var music2 = new Audio('./assets/atari.mp3');
-var music3 = new Audio('./assets/win.mp3');
+var music2 = new Audio('assets/atari.mp3');
+var music3 = new Audio('assets/win.mp3');
 
 var image = new Image();
 var image2 = new Image();
@@ -143,7 +143,7 @@ var musicPause = function() {
   music2.currentTime = 0;
 
   image.id = "img";
-  image.src = "./assets/cracker.png";
+  image.src = "assets/cracker.png";
   image.style.position = "absolute";
   image.style.left = targetDiv.width/2 - width_image/2;
   image.style.top = targetDiv.height/2 - height_image/2;
@@ -157,7 +157,7 @@ function hirahira() {
   targetDiv.removeChild(image);
 
   image2.id = "img";
-  image2.src = "./assets/confetti-44.gif";
+  image2.src = "assets/confetti-44.gif";
   image2.style.position = "absolute";
   image2.style.left = 0;
   image2.style.top = 0;
