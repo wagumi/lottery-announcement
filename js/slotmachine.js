@@ -1,45 +1,9 @@
-/* -------------------------------------- */
-/* ------------  Settings  -------------- */
-/* -------------------------------------- */
-
-// 配列にリスト　constで
-
-// 当選した人は記録して次当たらないように
-// 　→　CSV　→　APIとかDBになっちゃう。。
-
-//　リロードした場合に当たった人に当たってしまったら、ごめんなさいでもう一回
-
-// 名前　→　配列に
-
-// 配列をランダムに生成して、一番上をとる、
-//   　　
-
-// 配列の length数　から　ランダムで　（シードに気を付ける）
-
-/*
-const arrTest = [
-  "aaaaaaaあ愛",
-  "bbbbbb1い感謝",
-  "bbbbbb2う感謝",
-  "bbbbbb4え感謝",
-  "bbbbbb5お上",
-  "bbbbbb6か川",
-  "bbbbbb7き",
-  "bbbbbb8く",
-  "bbbbbb9け",
-  "bbbbbb1oこ",
-  "bbbbbb11あ",
-  "chideplus（🥷,🏯）ccccccい🙏"
-];
-*/
-
-const arrTest = [
+// 応募者リスト
+const applicants = [
   "takeshi",
   "muarata",
   "jasagiri",
   "kazy39",
-  "araimono.KaiWai",
-  "ukishima",
   "Mameta",
   "自律分散型メイド",
   "Taka｜DAOWorker",
@@ -107,21 +71,15 @@ const arrTest = [
   "Hayato"
 ];
 
-// 当選者
-
-
-//maxLength = 30;
-
 var music = new Audio('https://howlingindicator.net/wp-content/uploads/2022/02/SE114_3.mp3');
 var music2 = new Audio('assets/atari.mp3');
 var music3 = new Audio('assets/win.mp3');
 
 var image = new Image();
 var image2 = new Image();
-var targetDiv = document.getElementById('test');
+var targetDiv = document.getElementById('main_canvas_wrapper');
 var width_image = 960;
 var height_image = 540;
-
 //music.cloneNode();
 
 var musicPlay = function() {
@@ -171,22 +129,20 @@ function hirahiraStop() {
 
 function sleep(waitMsec) {
   var startMsec = new Date();
- 
-  // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
+   // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
   while (new Date() - startMsec < waitMsec);
 }
 
 let id;
 
-function exec () {
+function exec() {
 
-  var arrTest2 = arrayShuffle(arrTest);
-console.log(arrTest2);
-
-//  canvas2 = document.getElementById('cracker');
-//  ctx2 = canvas2.getContext('2d');
-//  ctx2.fillStyle = 'rgb(0,0,255)'; //塗りつぶしの色は赤
-//  ctx2.fillRect(20,40,100,100);
+  let workApplicants = arrayShuffle(applicants);
+  console.log(workApplicants);
+  //  canvas2 = document.getElementById('cracker');
+  //  ctx2 = canvas2.getContext('2d');
+  //  ctx2.fillStyle = 'rgb(0,0,255)'; //塗りつぶしの色は赤
+  //  ctx2.fillRect(20,40,100,100);
 
   window.cancelAnimationFrame(id);
 
@@ -206,19 +162,37 @@ console.log(arrTest2);
   music2.pause();
   music.play();
   setTimeout(musicPause, 5500);
+  text = workApplicants[0];
+  len = text.length;
 
-  //text = '    araimono#1234    ';  // The message displayed
-  text = arrTest2[0]; //  '    ukishimaさん#7592    ';  // The message displayed
-  //padding = (maxLength - text.trim() / 2);
-  //text =   '   CieloChiara#5648   ';  // The message displayed
-//  chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890# ';  // All possible Charactrers
+  let leftPadding, rightPadding;
 
+  if ((len % 2) == 0) {
+    let temp = 20 - len;
+    leftPadding = temp / 2;
+    rightPadding = temp / 2;
+  } else {
+    let temp = 19 - len;
+    leftPadding = temp / 2;
+    rightPadding = (temp / 2) + 1;
+  }
 
-//chars = 'ukishimaさん#7592 abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#';  // All possible Charactrers
+  console.log('len=', len);
+  console.log('leftPadding=', leftPadding);
+  console.log('rightPadding=', rightPadding);
 
-chars = arrTest2[0] + ' ukishimaさん#7592 abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#';  // All possible Charactrers
+  for (var i=0; i<leftPadding; i++) {
+    text = ' ' + text;
+  }
+  for (var i=0; i<rightPadding; i++) {
+    text = text + ' ';
+  }
 
-const scale = 70;  // Font size and overall scale
+  console.log(text);
+
+  chars = workApplicants[0] + ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#*';
+
+  const scale = 70;  // Font size and overall scale
   const breaks = 0.003;  // Speed loss per frame
   const endSpeed = 0.05;  // Speed at which the letter stops
   const firstLetter = 120;  // Number of frames untill the first letter stopps (60 frames per second)
@@ -246,91 +220,72 @@ const scale = 70;  // Font size and overall scale
   var tmp2 = arrayShuffle(tmp);
 
   for(var i=0;i<text.length;i++){
-    //var tmp = text.length;
-    var f = firstLetter+delay*tmp2[i];  //arrayShuffle(10);  //( text.length - Math.ramdom(1-10) );
-    
+    var f = firstLetter+delay*tmp2[i];
     console.log("f: ", f);
-    
     offsetV[i] = endSpeed+breaks*f;
     offset[i] = -(1+f)*(breaks*f+2*endSpeed)/2;
-
   }
   
-  //var timeout = firstLetter+(delay*text.length); //  firstLetter+(delay*maxlength);
-  //console.log("timeout: ", timeout);
-  //setTimeout(musicPause, timeout);
+  (onresize = function(){
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+  })();
 
-(onresize = function(){
-  canvas.width = canvas.clientWidth;
-  canvas.height = canvas.clientHeight;
-})();
+  function requestAnimationFrameLoop() {
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = '#ff3ec9';
+    ctx.fillStyle = '#d10d19';
+    ctx.fillRect(0,(canvas.height-scale)/2,canvas.width,scale);
 
-function requestAnimationFrameLoop() {
+    for(var i=0;i<text.length;i++){
+      ctx.fillStyle = '#eeeeee';
+      ctx.textBaseline = 'middle';
+      ctx.textAlign = 'center';
+      ctx.fontWeight = '700';
+      ctx.setTransform(1,0,0,1,Math.floor((canvas.width-scale*(text.length-1))/2),Math.floor(canvas.height/2));
+      var o = offset[i];
+      while(o<0)o++;
+      o %= 1;
+      var h = Math.ceil(canvas.height/2/scale)
 
-  ctx.setTransform(1,0,0,1,0,0);
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.globalAlpha = 1;
-  ctx.fillStyle = '#ff3ec9';
-  ctx.fillStyle = '#d10d19';
-  ctx.fillRect(0,(canvas.height-scale)/2,canvas.width,scale);
-
-  for(var i=0;i<text.length;i++){
-    ctx.fillStyle = '#eeeeee';
-    ctx.textBaseline = 'middle';
-    ctx.textAlign = 'center';
-    ctx.fontWeight = '700';
-    ctx.setTransform(1,0,0,1,Math.floor((canvas.width-scale*(text.length-1))/2),Math.floor(canvas.height/2));
-    var o = offset[i];
-    while(o<0)o++;
-    o %= 1;
-    var h = Math.ceil(canvas.height/2/scale)
-
-    for(var j=-h;j<h;j++){
-      var c = charMap[text[i]]+j-Math.floor(offset[i]);
-      while(c<0) {
-        c+=chars.length;
+      for(var j=-h;j<h;j++){
+        var c = charMap[text[i]]+j-Math.floor(offset[i]);
+        while(c<0) {
+          c+=chars.length;
+        }
+        
+        c %= chars.length;
+        var s = 1-Math.abs(j+o)/(canvas.height/2/scale+1)
+        ctx.globalAlpha = s
+        ctx.font = scale*s + 'px Impact'
+        ctx.fontWeight = 'bold'
+        ctx.fillText(chars[c],scale*i,(j+o)*scale);
       }
-      
-      c %= chars.length;
-      var s = 1-Math.abs(j+o)/(canvas.height/2/scale+1)
-      ctx.globalAlpha = s
-      //ctx.font = scale*s + 'px Helvetica'
-      //ctx.font = scale*s + 'px Impact, sans-serif;'
-      ctx.font = scale*s + 'px Impact'
-      //ctx.font = scale*s + "px 'Noto Color Emoji';"
-      ctx.fontWeight = 'bold'
-      ctx.fillText(chars[c],scale*i,(j+o)*scale);
+
+      offset[i] += offsetV[i];
+      offsetV[i] -= breaks;
+      if(offsetV[i]<endSpeed){
+        offset[i] = 0;
+        offsetV[i] = 0;
+      }
     }
 
-    offset[i] += offsetV[i];
-    offsetV[i] -= breaks;
-    if(offsetV[i]<endSpeed){
-      offset[i] = 0;
-      offsetV[i] = 0;
+    frameCount ++;
+    endTime = new Date().getTime();
+    if(endTime - startTime >= 1000){
+        fps = frameCount;
+        frameCount = 0;
+        startTime = new Date().getTime();
+
     }
-  
-    
+    let animationFPS = document.getElementById("fps");
+    animationFPS.innerHTML = fps;
+    id = requestAnimationFrame(requestAnimationFrameLoop);
   }
 
-
-  frameCount ++;
-  endTime = new Date().getTime();
-  if(endTime - startTime >= 1000){
-      fps = frameCount;
-      frameCount = 0;
-      startTime = new Date().getTime();
-
-  }
-
-  let animationFPS = document.getElementById("fps");
-  animationFPS.innerHTML = fps;
-
-  id = requestAnimationFrame(requestAnimationFrameLoop);
-//  requestAnimationFrame(loop);
-}
-
-requestAnimationFrameLoop();
-
+  requestAnimationFrameLoop();
 }
   
 function arrayShuffle(array) {
@@ -343,38 +298,43 @@ function arrayShuffle(array) {
   return array;
 }
 
-function animation(){
+function shuffleText(text) {
+	let obj = {};
+	for (let i = 0; i < text.length; i++) {
+		let rand = Math.floor(Math.random() * 10000000);
+		if (!obj[rand]) {
+			obj[rand] = text[i];
+		} else {
+			i--;
+		}
+	}
+	return Object.values(obj).join('');
+}
 
+function animation() {
   let fps = 0;
   let frameCount = 0;
   let startTime;
   let endTime;
-
   startTime = new Date().getTime();
+  requestAnimationFrame(loop = function() {
+    frameCount ++;
+    endTime = new Date().getTime();
+    if (endTime - startTime >= 1000) {
+        fps = frameCount;
+        frameCount = 0;
+        startTime = new Date().getTime();
+    }
 
-  requestAnimationFrame(loop = function(){
+    let animationFPS = document.getElementById("fps");
+    animationFPS.innerHTML = fps;
 
-      frameCount ++;
-      endTime = new Date().getTime();
-      if(endTime - startTime >= 1000){
-          fps = frameCount;
-          frameCount = 0;
-          startTime = new Date().getTime();
-
-      }
-
-      let animationFPS = document.getElementById("fps");
-      animationFPS.innerHTML = fps;
-
-      id = requestAnimationFrame(loop);
-
+    id = requestAnimationFrame(loop);
   });
   //animationLoop();
 }
 
-
-function animation2(){
-
+function animation2() {
   let fps = 0;
   let frameCount = 0;
   let startTime;
@@ -382,53 +342,19 @@ function animation2(){
 
   startTime = new Date().getTime();
 
-  function animationLoop(){
-
+  function animationLoop() {
       frameCount ++;
       endTime = new Date().getTime();
-      if(endTime - startTime >= 1000){
+      if (endTime - startTime >= 1000) {
           fps = frameCount;
           frameCount = 0;
           startTime = new Date().getTime();
-
       }
 
       requestAnimationFrame(animationLoop);
 
       let animationFPS = document.getElementById("fps2");
       animationFPS.innerHTML = fps;
-
   }
-
   animationLoop();
-
 }
-
-/*
-(function(w) {
-	w.cancelAnimationFrame = (function() {
-		return {
-			w.cancelAnimationFrame       ||
-			w.webkitCancelAnimationFrame ||
-			w.mozCancelAnimationFrame    ||
-			w.msCancelAnimationFrame     ||
-			w.oCancelAnimationFrame      ||
-			function(requestId) {
-				w.clearTimeout(requestId);
-			}
-		};
-	})();
-})(window);
-*/
-
-/*
-:sparkling_heart: 
-🙏
-🙏
-🙏
-*/
-
-
-
-
-

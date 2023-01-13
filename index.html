@@ -7,32 +7,25 @@
     <meta name="description" content="" />
     <title>LotteryAnnouncement</title>
     <link rel="stylesheet" href="css/common.css" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
-   
-<style>
-    </style>
+    <style></style>
 </head>
 <body>
   <p style="display: none;">FPS数:<span id = "fps"></span></p>
   <p style="display: none;">FPS数2:<span id = "fps2"></span></p>
-    <header>
-    </header>
+    <header></header>
     <main>
         <article>
             <section>
-              <button onclick="exec()">抽選実行</button>
-
-              <div id="test">
+              <button id="btn_exec" onclick="exec()">抽選実行</button>
+              <div id="main_canvas_wrapper">
                 <canvas id="canvas1"></canvas>
                 <canvas id="cracker">
                   <img src="assets/cracker.png" />
                 </canvas>
               </div>
-
-
             </section>
         </article>
     </main>
