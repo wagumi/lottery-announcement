@@ -34,15 +34,14 @@ const arrTest = [
 */
 
 const arrTest = [
-  "takeshi#1234",
-  "muarata#1234",
-  "jasagiri#1234",
-  "kazy39#1234",
-  "CieloChiara#1234",
-  "araimono.KaiWai#1234",
-  "ukishima#1234",
-  "Mameta#1234",
-  "自律分散型メイド#1234",
+  "takeshi",
+  "muarata",
+  "jasagiri",
+  "kazy39",
+  "araimono.KaiWai",
+  "ukishima",
+  "Mameta",
+  "自律分散型メイド",
   "Taka｜DAOWorker",
   "KenKen",
   "JunIto",
