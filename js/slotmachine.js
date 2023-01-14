@@ -1,6 +1,5 @@
 // 応募者リスト
 const applicants = [
-/*
   "takeshi",
   "muarata",
   "jasagiri",
@@ -66,7 +65,6 @@ const applicants = [
   "いかちゃんねる",
   "Kkk",
   "Kenji",
-*/
   "sasami",
   "hassaku8",
   "davinci9",
