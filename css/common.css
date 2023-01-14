@@ -20,8 +20,8 @@ body {
   display: none;
   position: absolute;
   background: #111;
-  height: 75%;
-  width: 50%;
+  height: 540px;
+  width: 960px;
   left: 0;
   bottom: 0;
 }
@@ -41,10 +41,28 @@ body {
   font-size: 20px;
   font-weight: 700;
   color: #ee0000;
-  background-color: #ffffff;
+  background-color: #dddddd;
 }
 #btn_exec:hover {
+  background-color: #ffffff;
+  transition-duration: 500ms;
+}
+
+#btn_reset {
+  position: absolute;
+  right: 20px;
+  bottom : 20px;
+  z-index: 100;
+  padding: 6px 12px;
+  border: solid 4px #ff0000;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ee0000;
   background-color: #dddddd;
+}
+#btn_reset:hover {
+  background-color: #ffffff;
   transition-duration: 500ms;
 }
 

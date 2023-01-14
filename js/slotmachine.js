@@ -85,13 +85,14 @@ if (window.localStorage) {
 
 console.log('winners : ', winners);
 
-var music = new Audio('https://howlingindicator.net/wp-content/uploads/2022/02/SE114_3.mp3');
-var music2 = new Audio('assets/atari.mp3');
+var music = new Audio('assets/drumroll.mp3');
+var music2 = new Audio('assets/hit.mp3');
 var music3 = new Audio('assets/win.mp3');
 
 var image = new Image();
 var image2 = new Image();
-var targetDiv = document.getElementById('main_canvas_wrapper');
+//var targetDiv = document.getElementById('main_canvas_wrapper');
+var targetDiv = document.getElementById('main');
 var width_image = 960;
 var height_image = 540;
 //music.cloneNode();
@@ -113,19 +114,19 @@ var musicPause = function() {
   image.id = "img";
   image.src = "assets/cracker.png";
   image.style.position = "absolute";
-  image.style.left = targetDiv.width/2 - width_image/2;
-  image.style.top = targetDiv.height/2 - height_image/2;
+  image.style.left = (targetDiv.offsetWidth/2 - width_image/2) + 'px';
+  image.style.top = ((targetDiv.offsetHeight/2 - height_image/2) - 50) + 'px';
   image.style.width = width_image;
   image.style.height = height_image;
   targetDiv.appendChild(image);
-  setTimeout(hirahira, 2000);
+  setTimeout(confetti, 2000);
 }
 
-function hirahira() {
+function confetti() {
   targetDiv.removeChild(image);
 
   image2.id = "img";
-  image2.src = "assets/confetti-44.gif";
+  image2.src = "assets/confetti.gif";
   image2.style.position = "absolute";
   image2.style.left = 0;
   image2.style.top = 0;
@@ -134,10 +135,10 @@ function hirahira() {
   targetDiv.appendChild(image2);
   music3.currentTime = 0;
   music3.play();
-  setTimeout(hirahiraStop, 10000);
+  setTimeout(confettiStop, 10000);
 }
 
-function hirahiraStop() {
+function confettiStop() {
   targetDiv.removeChild(image2);
 }
 
@@ -145,6 +146,20 @@ function sleep(waitMsec) {
   var startMsec = new Date();
    // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
   while (new Date() - startMsec < waitMsec);
+}
+
+function reset() {
+  const confirmStr = '本当にリセットを行いますか？\r\n' +
+                      '(LocalStrageから当選者情報の削除)\r\n' +
+                      '当選者: ' + winners.length + '名';
+  let result = window.confirm(confirmStr);
+  if (result) {
+    localStorage.removeItem("winners");
+    winners = [];
+    alert('リセットが実行されました');
+    console.log('リセットが実行されました');
+  }
+  return;
 }
 
 let id;
@@ -164,6 +179,7 @@ function exec() {
     winners.push(workApplicants[0]);
   } else {
     console.log('対象の抽選者がいません');
+    alert('対象の抽選者がいません');
     return;
   }
 
