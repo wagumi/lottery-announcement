@@ -87,7 +87,7 @@ console.log('winners : ', winners);
 
 var music = new Audio('assets/drumroll.mp3');
 var music2 = new Audio('assets/hit.mp3');
-var music3 = new Audio('assets/win.mp3');
+var music3 = new Audio('assets/fanfare.mp3');
 
 var image = new Image();
 var image2 = new Image();
