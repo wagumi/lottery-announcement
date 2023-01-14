@@ -1,5 +1,6 @@
 // 応募者リスト
 const applicants = [
+/*
   "takeshi",
   "muarata",
   "jasagiri",
@@ -65,11 +66,26 @@ const applicants = [
   "いかちゃんねる",
   "Kkk",
   "Kenji",
+*/
   "sasami",
   "hassaku8",
   "davinci9",
   "Hayato"
 ];
+
+let winners = [];
+
+if (window.localStorage) {
+	let json = localStorage.getItem('winners');
+  if (json) {
+    winners = JSON.parse(json);
+  } else {
+    winners = [];
+  }
+  console.log('winners(first): ', winners);
+}
+
+console.log('winners : ', winners);
 
 var music = new Audio('https://howlingindicator.net/wp-content/uploads/2022/02/SE114_3.mp3');
 var music2 = new Audio('assets/atari.mp3');
@@ -136,8 +152,28 @@ function sleep(waitMsec) {
 let id;
 
 function exec() {
-
   let workApplicants = arrayShuffle(applicants);
+
+  console.log('workApplicants: ', workApplicants);
+  console.log('winners: ', winners);
+
+  workApplicants = workApplicants.filter(function(v){
+    return ! winners.includes(v);
+  });
+
+  console.log('workApplicants(removed) : ', workApplicants);
+  if (workApplicants.length > 0) {
+    winners.push(workApplicants[0]);
+  } else {
+    console.log('対象の抽選者がいません');
+    return;
+  }
+
+  if (window.localStorage) {
+    let json = JSON.stringify(winners, undefined, 1);
+    localStorage.setItem('winners', json);
+  }
+
   console.log(workApplicants);
   //  canvas2 = document.getElementById('cracker');
   //  ctx2 = canvas2.getContext('2d');
@@ -190,7 +226,8 @@ function exec() {
 
   console.log(text);
 
-  chars = workApplicants[0] + ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#*';
+  chars = workApplicants[0] + ' あいうえおabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#*';
+  chars = shuffleText(chars);
 
   const scale = 70;  // Font size and overall scale
   const breaks = 0.003;  // Speed loss per frame
@@ -235,12 +272,16 @@ function exec() {
     ctx.setTransform(1,0,0,1,0,0);
     ctx.clearRect(0,0,canvas.width,canvas.height);
     ctx.globalAlpha = 1;
-    ctx.fillStyle = '#ff3ec9';
-    ctx.fillStyle = '#d10d19';
+    //ctx.fillStyle = '#ff3ec9';
+    //ctx.fillStyle = '#d10d19';
+    ctx.fillStyle = '#ffffff';
     ctx.fillRect(0,(canvas.height-scale)/2,canvas.width,scale);
 
     for(var i=0;i<text.length;i++){
-      ctx.fillStyle = '#eeeeee';
+      //ctx.fillStyle = '#eeeeee';
+      //ctx.fillStyle = '#e7240e';
+      //ctx.fillStyle = '#c70c17';
+      ctx.fillStyle = '#d71c27';
       ctx.textBaseline = 'middle';
       ctx.textAlign = 'center';
       ctx.fontWeight = '700';
@@ -284,7 +325,6 @@ function exec() {
     animationFPS.innerHTML = fps;
     id = requestAnimationFrame(requestAnimationFrameLoop);
   }
-
   requestAnimationFrameLoop();
 }
   
