@@ -1,12 +1,10 @@
 // 応募者リスト
 const applicants = [
-  "takeshi",
   "muarata",
   "jasagiri",
   "kazy39",
   "Mameta",
   "自律分散型メイド",
-  "Taka｜DAOWorker",
   "KenKen",
   "JunIto",
   "CAMU",
